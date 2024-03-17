@@ -157,6 +157,21 @@ Begin
 	revisar_tableroI:=resultado;
 end;
 
+procedure mostrar_minasI;
+var
+  f, c: integer;
+
+begin
+	  for f := 1 to 16 do
+	  begin
+		for c := 1 to 16 do
+		begin
+		  if celdas2[f, c] = 16 then
+			visibleI[f, c]:= true;
+		end;
+	  end;
+end;
+
 procedure marco_intermedio;
 var 
     i, j: integer;
@@ -185,6 +200,7 @@ begin
                 begin 
                     if celdas2[i,j] = 16 then
                     begin
+						mostrar_minasI;
                         write(' * ');
                     end
                     else
@@ -234,6 +250,7 @@ Begin
 //Has destapado una mina
 	if resultado=-1 then
 	Begin
+		mostrar_minasI;
 		writeln('Has pisado una mina');
 		Writeln('¡¡¡HAS PERDIDO!!!');
 	End

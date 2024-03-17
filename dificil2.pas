@@ -157,6 +157,21 @@ Begin
 	revisar_tableroD:=resultado;
 end;
 
+procedure mostrar_minasD;
+var
+  f, c: integer;
+
+begin
+	  for f := 1 to 16 do
+	  begin
+		for c := 1 to 30 do
+		begin
+		  if celdas3[f, c] = 30 then
+			visibleD[f, c]:= true;
+		end;
+	  end;
+end;
+
 procedure marco_dificil;
 var 
     i, j: integer;
@@ -185,6 +200,7 @@ begin
                 begin 
                     if celdas3[i,j] = 30 then
                     begin
+						mostrar_minasD;
                         write(' * ');
                     end
                     else
@@ -234,6 +250,7 @@ Begin
 //Has destapado una mina
 	if resultado=-1 then
 	Begin
+		mostrar_minasD;
 		writeln('Has pisado una mina');
 		Writeln('¡¡¡HAS PERDIDO!!!');
 	End

@@ -105,8 +105,7 @@ Begin
 	if visiblef[f,c]=false then
 	Begin
 		visiblef[f,c]:= true;
-		if celdas1[f,c
-		]=0 then
+		if celdas1[f,c]=0 then
 		begin
 			for f2 := max(1, f - 1) to min(8, f + 1) do
 			begin
@@ -159,6 +158,23 @@ Begin
 	revisar_tableroF:=resultado;
 end;
 
+procedure mostrar_minas;
+var
+  f, c: integer;
+
+begin
+	  for f := 1 to 8 do
+	  begin
+		for c := 1 to 8 do
+		begin
+		  if celdas1[f, c] = 8 then
+			visiblef[f, c]:= true;
+		end;
+	  end;
+end;
+
+
+
 procedure marco_facil;
 var 
     i, j: integer;
@@ -180,6 +196,7 @@ begin
                 begin 
                     if celdas1[i,j] = 8 then
                     begin
+						mostrar_minas;
                         write('* ');
                     end
                     else
@@ -195,34 +212,6 @@ begin
         end;
         writeln();
     end;	
-end;
-
-procedure marco_intermedio;
-var i,j:integer;
-
-begin
-	for i:=1 to 16 do
-	begin
-		for j:=1 to 16 do
-		begin
-			write('# ');
-		end;
-		writeln();
-	end;	
-end;
-
-procedure marco_dificil;
-var i,j:integer;
-
-begin
-	for i:=1 to 16 do
-	begin
-		for j:=1 to 30 do
-		begin
-			write('# ');
-		end;
-		writeln();
-	end;	
 end;
 
 procedure Facil();
@@ -258,6 +247,7 @@ Begin
 //Has destapado una mina
 	if resultado=-1 then
 	Begin
+		mostrar_minas;
 		writeln('Has pisado una mina');
 		Writeln('¡¡¡HAS PERDIDO!!!');
 	End
