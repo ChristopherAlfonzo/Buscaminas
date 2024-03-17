@@ -57,10 +57,9 @@ Begin
 	End;
 End;
 
-
 procedure colocarminas;
 var
-  i, x, y: Integer;
+  f2,c2,i, x, y: Integer;
 
 begin
   Randomize;
@@ -71,48 +70,54 @@ begin
       y := Random(columnasfacil) + 1;
     until celdas1[x, y] <> 8;
     celdas1[x, y] := 8;
-  end;
+  for f2 := max(1, x - 1) to min(8, x + 1) do
+      begin
+        for c2 := max(1, y - 1) to min(8, y + 1) do
+        begin
+          if celdas1[f2, c2] <> 8 then
+            celdas1[f2, c2]:=celdas1[f2, c2]+1;
+        end;
+      end;
+   end;
 end;
 
 procedure inicializarTablero();
 var
 c,f: integer;
 Begin
-	for c:=1 to 8 do
+	for f:=1 to 8 do
 	Begin
-		For f:=1 to 8 do
+		For c:=1 to 8 do
 		Begin
-			celdas1[c,f]:=0;
-			
+			celdas1[f,c]:=0;
 		End;
 	End;
 	colocarminas;
-	for c:=1 to 8 do
+	for f:=1 to 8 do
 	Begin
-		For f:=1 to 8 do
+		For c:=1 to 8 do
 		Begin
-			visible[c,f]:= false;
+			visible[f,c]:= false;
 		End;
 	End;
 End;
 
-procedure destapar_celdas(var c,f: integer);
+procedure destapar_celdas( f,c: integer);
 var
 f2,c2:integer;
 Begin
-	if visible[c,f]=false then
+	if visible[f,c]=false then
 	Begin
-		visible[c,f]:= true;
-		if celdas1[c,f]=0 then
+		visible[f,c]:= true;
+		if celdas1[f,c
+		]=0 then
 		begin
-			for f2:=max(1,f-1) to min(8,f+1) do 
+			for f2 := max(1, f - 1) to min(8, f + 1) do
 			begin
-				for c2:=max(1,c-1) to min(8,c+1) do 
+				for c2 := max(1, c - 1) to min(8, c + 1) do
 				begin
-					if celdas1[f2,c2] then
-					begin
-						destapar_celdas(f2,c2);
-					end;
+					if celdas1[f2, c2] <> 8 then
+						destapar_celdas(f2, c2);
 				end;
 			end;
 		end;
@@ -145,7 +150,7 @@ resultado:integer;
 
 Begin
 	resultado:=0;
-	if celdas1[c,f]=9 then
+	if celdas1[c,f]=8 then
 	Begin
 		visible[c,f]:= true;
 		resultado:=-1;
@@ -257,9 +262,8 @@ Begin
 //Has destapado una mina
 	if resultado=-1 then
 	Begin
-		colocarminas;
 		writeln('Has pisado una mina');
-		Writeln('¡¡¡HAS PERDIDO');
+		Writeln('¡¡¡HAS PERDIDO!!!');
 	End
 	//has destapado todas las casillas
 	else
@@ -272,7 +276,6 @@ End;
 
 BEGIN
 	facil;
-
 {
 	marco_intermedio;
 
