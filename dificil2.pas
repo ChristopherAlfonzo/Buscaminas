@@ -14,12 +14,12 @@ columnasdificil=30;
 minasdificil=99;
 
 type
-	tablerointermedio = array[1..filasintermedio, 1..columnasintermedio] of integer;
-	mostrarceldasI= array [1..16,1..16] of boolean;
+	tablerodificil = array[1..filasdificil, 1..columnasdificil] of integer;
+	mostrarceldasD= array [1..16,1..30] of boolean;
     
 var
-	visibleI: mostrarceldasI;
-	celdas2: tablerointermedio;
+	visibleD: mostrarceldasD;
+	celdas3: tablerodificil;
 	
 Function max(num1,num2:integer):integer;
 var
@@ -53,73 +53,73 @@ Begin
 	End;
 End;
 
-procedure colocarminasI;
+procedure colocarminasD;
 var
   f2,c2,i, x, y: Integer;
 
 begin
   Randomize;
-  for i := 1 to minasintermedio do
+  for i := 1 to minasdificil do
   begin
     repeat
-      x := Random(filasintermedio) + 1;
-      y := Random(columnasintermedio) + 1;
-    until celdas2[x, y] <> 16;
-    celdas2[x, y] := 16;
+      x := Random(filasdificil) + 1;
+      y := Random(columnasdificil) + 1;
+    until celdas3[x, y] <> 30;
+    celdas3[x, y] := 30;
   for f2 := max(1, x - 1) to min(16, x + 1) do
       begin
-        for c2 := max(1, y - 1) to min(16, y + 1) do
+        for c2 := max(1, y - 1) to min(30, y + 1) do
         begin
-          if celdas2[f2, c2] <> 16 then
-            celdas2[f2, c2]:=celdas2[f2, c2]+1;
+          if celdas3[f2, c2] <> 30 then
+            celdas3[f2, c2]:=celdas3[f2, c2]+1;
         end;
       end;
    end;
 end;
 
-procedure inicializarTablero();
+procedure inicializarTableroD();
 var
 c,f: integer;
 Begin
 	for f:=1 to 16 do
 	Begin
-		For c:=1 to 16 do
+		For c:=1 to 30 do
 		Begin
-			celdas2[f,c]:=0;
+			celdas3[f,c]:=0;
 		End;
 	End;
-	colocarminasI;
+	colocarminasD;
 	for f:=1 to 16 do
 	Begin
-		For c:=1 to 16 do
+		For c:=1 to 30 do
 		Begin
-			visibleI[f,c]:= false;
+			visibleD[f,c]:= false;
 		End;
 	End;
 End;
 
-procedure destapar_celdasI( f,c: integer);
+procedure destapar_celdasD( f,c: integer);
 var
 f2,c2:integer;
 Begin
-	if visibleI[f,c]=false then
+	if visibleD[f,c]=false then
 	Begin
-		visibleI[f,c]:= true;
-		if celdas2[f,c]=0 then
+		visibleD[f,c]:= true;
+		if celdas3[f,c]=0 then
 		begin
 			for f2 := max(1, f - 1) to min(16, f + 1) do
 			begin
-				for c2 := max(1, c - 1) to min(16, c + 1) do
+				for c2 := max(1, c - 1) to min(30, c + 1) do
 				begin
-					if celdas2[f2, c2] <> 16 then
-						destapar_celdasI(f2, c2);
+					if celdas3[f2, c2] <> 30 then
+						destapar_celdasD(f2, c2);
 				end;
 			end;
 		end;
 	End;
 End;
 
-function celdas_destapadasI(f,c:integer):integer;
+function celdas_destapadasD(f,c:integer):integer;
 
 var
 num: integer;
@@ -127,43 +127,43 @@ Begin
 	num:=0;
 	for f:=1 to  16 do
 	Begin
-		for c:= 1 to 16 do
+		for c:= 1 to 30 do
 		Begin
-			if visibleI[c,f] then
+			if visibleD[c,f] then
 			Begin
 				num:=num+1;
-				celdas_destapadasI:=num
+				celdas_destapadasD:=num
 			End;
 		End;
 	End;
 End;
 
-function revisar_tableroI (c, f: integer): integer;
+function revisar_tableroD (c, f: integer): integer;
 var
 resultado:integer;
 
 Begin
 	resultado:=0;
-	if celdas2[c,f]=16 then
+	if celdas3[c,f]=30 then
 	Begin
-		visibleI[c,f]:= true;
+		visibleD[c,f]:= true;
 		resultado:=-1;
 	End
 	else
 	Begin
-		destapar_celdasI(c,f);
-		resultado:=celdas_destapadasI(c,f);
+		destapar_celdasD(c,f);
+		resultado:=celdas_destapadasD(c,f);
 	end;
-	revisar_tableroI:=resultado;
+	revisar_tableroD:=resultado;
 end;
 
-procedure marco_intermedio;
+procedure marco_dificil;
 var 
     i, j: integer;
-    colum: string = ('    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16');
+    colum: string = ('    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30');
 begin
     writeln(colum);
-    for i := 1 to filasintermedio do
+    for i := 1 to filasdificil do
     begin
        if i>9 then 
 		Begin
@@ -173,23 +173,23 @@ begin
 		Begin
 			write(' ',i,' ');
 		end;
-        for j := 1 to columnasintermedio do
+        for j := 1 to columnasdificil do
         begin
-            if visibleI[i,j] then
+            if visibleD[i,j] then
             begin
-                if celdas2[i,j] = 0 then
+                if celdas3[i,j] = 0 then
                 begin
                     write('   ');
                 end
                 else 
                 begin 
-                    if celdas2[i,j] = 16 then
+                    if celdas3[i,j] = 30 then
                     begin
                         write(' * ');
                     end
                     else
                     begin
-                        write(' ',celdas2[i,j],' ');
+                        write(' ',celdas3[i,j],' ');
                     end;
                 end;
             end
@@ -202,14 +202,14 @@ begin
     end;	
 end;
 
-procedure intermedio();
+procedure dificil();
 	Var
 	f,c,resultado: integer;
 Begin
-	inicializarTablero;
+	inicializarTableroD;
 	repeat
 	Begin
-		marco_intermedio;
+		marco_dificil;
 		//Pedir fila y columna de casilla a destapar
 		repeat
 		Begin
@@ -219,18 +219,18 @@ Begin
 		until (f>=1) and (f<=16);
 		repeat
 		Begin
-			Writeln('Indica una columna entre el 1 al 16:');
+			Writeln('Indica una columna entre el 1 al 30:');
 			readln(c);
 		End;
-		until (c>=1) and (c<=16) ;
+		until (c>=1) and (c<=30) ;
 		
 		//Comprobamos el tablero
 
-		resultado:=revisar_tableroI(f,c);
+		resultado:=revisar_tableroD(f,c);
 		clrscr;
 	End;
-	until (resultado=-1) or (resultado=216);
-	marco_intermedio;
+	until (resultado=-1) or (resultado=351);
+	marco_dificil;
 //Has destapado una mina
 	if resultado=-1 then
 	Begin
@@ -247,6 +247,6 @@ Begin
 End;
 
 BEGIN
-	intermedio;
+	dificil;
 	readln();
 END.
