@@ -710,59 +710,59 @@ BEGIN
 			Begin
 				Repeat
 				Begin
-					Writeln('usted ha elegido la opcion de jugar');
+					Writeln('Usted ha elegido la opcion de jugar');
 					Writeln('Elija la difilcutad que quiere jugar');
-					Writeln('1. Facil');
-					Writeln('2. Intermedio');
-					writeln('3. Dificil');
+					Writeln('Presio 1 para modo Facil');
+					Writeln('presiones 2 para modo Intermedio');
+					writeln('Presiones 3 para modo Dificil');
 					readln(difilcultad);
 					clrscr;
 				End;
 				until (difilcultad>'1') or (difilcultad<'4');//evita que se elija una difilcultad que no existe, pero te devuelve al inicio del programa
 				case difilcultad of
 					'1': begin
-						Writeln('usted ha elegido la difilcultad facil');
-						writeln('Diviertase');
+						Writeln('Usted ha elegido la difilcultad fácil');
+						writeln('Diviertase, presione cualquier tecla para iniciar');
 						readkey;
 						clrscr;
 						repeat
 							Begin
 								Facil;
 								writeln('Ha terminado la partida');
-								writeln('1.Si quiere volver a la pantalla de inicio');
-								writeln('Presione cualquier otra tecla para ir al menu principal');
+								writeln('Presione 1 si quiere volver a la pantalla de inicio');
+								writeln('Presione cualquier otra tecla para seguir jugando en esta dificultad');
 								readln(decision);
 								clrscr;
 							End;
 						until (decision='1');//para que el usuario decida si quiere volver a jugar o quiere reiniciar el programa
 					End;
 					'2': begin
-						Writeln('usted ha elegido la difilcultad media');
-						writeln('Diviertase');
+						Writeln('Usted ha elegido la difilcultad Intermedio');
+						writeln('Diviertase, presione cualquier tecla para iniciar');
 						readkey;
 						clrscr;
 						repeat
 							Begin
 								intermedio;
 								writeln('Ha terminado la partida');
-								writeln('1.Si quiere volver a la pantalla de inicio');
-								writeln('Presione cualquier otra tecla para ir al menu principal');
+								writeln('Presione 1 si quiere volver a la pantalla de inicio');
+								writeln('Presione cualquier otra tecla para seguir jugando en esta dificultad');
 								readln(decision);
 								clrscr;
 							End;
 						until (decision='1');//para que el usuario decida si quiere volver a jugar o quiere reiniciar el programa
 					End;
 					'3': begin
-							Writeln('usted ha elegido la difilcultad dificil');
-							writeln('Diviertase');
+							Writeln('Usted ha elegido la difilcultad difícil');
+							writeln('Diviertase, presione cualquier tecla para iniciar');
 							readkey;
 							clrscr;
 							repeat
 							Begin
 								dificil;
 								writeln('Ha terminado la partida');
-								writeln('1.Si quiere volver a la pantalla de inicio');
-								writeln('Presione cualquier otra tecla para ir al menu principal');
+								writeln('Presione 1 si quiere volver a la pantalla de inicio');
+								writeln('Presione cualquier otra tecla para seguir jugando en esta dificultad');
 								readln(decision);
 								clrscr;
 							End;
