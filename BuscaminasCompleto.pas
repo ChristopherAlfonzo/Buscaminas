@@ -712,9 +712,9 @@ BEGIN
 				Begin
 					Writeln('Usted ha elegido la opcion de jugar');
 					Writeln('Elija la difilcutad que quiere jugar');
-					Writeln('Presio 1 para modo Facil');
-					Writeln('presiones 2 para modo Intermedio');
-					writeln('Presiones 3 para modo Dificil');
+					Writeln('Presione 1 para modo Facil');
+					Writeln('presione 2 para modo Intermedio');
+					writeln('Presione 3 para modo Dificil');
 					readln(difilcultad);
 					clrscr;
 				End;
